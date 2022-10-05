@@ -90,7 +90,7 @@ This repository contains two files:
             "type": "array",
             "items": {
                 "type": "string",
-                "description": "Cost-related code assigned to the commit message."
+                "description": "Cost-related code assigned to the commit message (see Section 'Codes')."
             }
         }
     }
@@ -104,6 +104,25 @@ This repository contains two files:
     "codes": ["saving","instance"]
   },
   ```
+
+## Codes
+
+Each entry (i.e. commits) in `dataset.json` is tagged with one or more of 14 codes identified during the study execution. The definition of each code is presented below.
+
+- **alert**: denotes messages expressing concerns related to billing alarms enforcing an upper threshold on costs.
+- **area**: denotes messages expressing concerns related to server or instance geographical location.
+- **awareness**: denotes messages simply mentioning concerns with cost (without necessarily implying action).
+- **billing_mode**: denotes messages expressing concerns related to the type of billing plan being used (e.g., on-demand for development or normal plan for production).
+- **cluster**: denotes messages expressing concerns related to cluster configuration.
+- **domain**: denotes messages expressing concerns related to domain name system and IP addresses.
+- **feature**: denotes messages expressing concerns related to various features such as logging, load balancers or usage of third party libraries.
+- **increase**: denotes messages expressing concerns related to increase in cost due to a change.
+- **instance**: denotes messages expressing concerns related to computational instances (e.g., Amazon AWS t2.micro) used in the deployment.
+- **networking**: denotes messages expressing concerns related to networking configuration.
+- **policy**: denotes messages expressing concerns related to the implementation of general rules to prevent excessive charges.
+- **provider**: denotes messages expressing concerns related to choosing a service providers (e.g., Amazon, Azure, Google)
+- **saving**: denotes mentioned changes made to save costs.
+- **storage**: denotes messages expressing concerns related to storage solutions (e.g., Amazon gp2) used in the deployment.
 
 ## License
 
