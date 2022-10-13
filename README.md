@@ -4,15 +4,34 @@ This repository contains the supplementary material for the paper entitled:
 
 **Mining Cloud Cost Awareness — Is it possible?**
 
-This repository contains two files:
-- `repositories.json`
-- `dataset.json`
+The supplementary material includes:
+- scripts to support raw data collection and cached versions of data generated during the raw data collection; and
+- the compiled dataset containing evidence of cost awareness in commits of cloud-based software repositories, and associated information.
 
-> **Long-term storage**
-> 
+
+**Long-term storage** 
 > This is a temporary repository for double-blind review. If the submission is accepted, we will upload its content to an archival repository that guarantees long-time storage and update the manuscript with the DOI.
 
-## Metadata
+**Replication disclaimers:**
+> (1) We note that running the provided scripts from scratch will result in variations in the output files since projects have evolved and some projects may have been deleted or made private.
+>
+> (2) The second part of the dataset generation (coding of commits and filtering of commit with relevant codes) was manual. Therefore we only provide the dataset (i.e., there are no scripts).
+
+## Contents
+
+### **`data-collection/`**
+
+- **`data-collection.ipynb`** | Jupyter notebook that makes use of [PyGitHub](https://pypi.org/project/PyGithub/) and [PyDriller](https://pydriller.readthedocs.io/en/latest/commit.html) to automate the raw data retrieval, which is divided into four steps: (1) recover GitHub repositories containing HCL IaC, (2) filter repositories with Terraform files, (3) extract commits with cost-related keywords, and (4) filter commits that modify Terraform files.
+- **`data/`** | Folder with the output files generated during the raw data retrieval. The files are explained in `data-collection.ipynb`. Also, you can find a cached version of each file (from the time of the study execution).
+- **`Dockerfile`**, **`docker-compose.yaml`**, **`env.yaml`** | Files to build and start a Docker container with a JupyterLab instance and all necessary dependencies (see `env.yaml`).
+
+Running scripts (via JupyterLab):
+> 1. Install [Docker Engine](https://docs.docker.com/engine/install/)
+> 2. In the terminal/cmd
+>    1. Navigate to this folder
+>    2. Run `docker compose up`
+> 3. Open your browser
+> 4. Navigate to https://localhost:8888
 
 ### **`repositories.json`**
 
@@ -105,27 +124,31 @@ This repository contains two files:
   },
   ```
 
-## Codes
+### **`codes.json`**
 
-Each entry (i.e. commits) in `dataset.json` is tagged with one or more of 14 codes identified during the study execution. The definition of each code is presented below.
-
-- **alert**: denotes messages expressing concerns related to billing alarms enforcing an upper threshold on costs.
-- **area**: denotes messages expressing concerns related to server or instance geographical location.
-- **awareness**: denotes messages simply mentioning concerns with cost (without necessarily implying action).
-- **billing_mode**: denotes messages expressing concerns related to the type of billing plan being used (e.g., on-demand for development or normal plan for production).
-- **cluster**: denotes messages expressing concerns related to cluster configuration.
-- **domain**: denotes messages expressing concerns related to domain name system and IP addresses.
-- **feature**: denotes messages expressing concerns related to various features such as logging, load balancers or usage of third party libraries.
-- **increase**: denotes messages expressing concerns related to increase in cost due to a change.
-- **instance**: denotes messages expressing concerns related to computational instances (e.g., Amazon AWS t2.micro) used in the deployment.
-- **networking**: denotes messages expressing concerns related to networking configuration.
-- **policy**: denotes messages expressing concerns related to the implementation of general rules to prevent excessive charges.
-- **provider**: denotes messages expressing concerns related to choosing a service providers (e.g., Amazon, Azure, Google)
-- **saving**: denotes mentioned changes made to save costs.
-- **storage**: denotes messages expressing concerns related to storage solutions (e.g., Amazon gp2) used in the deployment.
+- **Content**: Description of the codes identified during the study.
+- **Format**: List of entries in JSON.
+- **Size**: 14 entries.
+- **Collection period**: May 2022.
+- **Entry fields** ([JSON Schema](https://json-schema.org/)):
+  ```json
+  {
+    "$schema": "https://json-schema.org/draft/2020-12/schema",
+    "title": "Code",
+    "type": "object",
+    "properties": {
+        "name": {
+            "type": "string",
+            "description": "Name of the code."
+        },
+        "description": {
+            "type": "string",
+            "description": "Desription of the code."
+        }
+    }
+  }
+  ```
 
 ## License
 
 The data compiled in this repository is licensed under a [Creative Commons Attribution-NonCommercial 4.0 International](https://creativecommons.org/licenses/by-nc/4.0/) (CC BY-NC 4.0) License.
-
-
