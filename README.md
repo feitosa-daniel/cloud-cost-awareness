@@ -15,7 +15,7 @@ The supplementary material includes:
 **Replication disclaimers:**
 > (1) We note that running the provided scripts from scratch will result in variations in the output files since projects have evolved and some projects may have been deleted or made private.
 >
-> (2) The second part of the dataset generation (coding of commits and filtering of commit with relevant codes) was manual. Therefore we only provide the dataset (i.e., there are no scripts).
+> (2) The provided scripts aid the collection of the raw data (i.e., candidate commits) to be analyzed for evidence of cost awareness (see [step4-tf-commits.json](data-collection/data/step4-tf-commits.json)). The next step to generate to provided [dataset.json](dataset.json) (i.e., coding of commits and filtering of those with relevant codes) was manual. Therefore, there is no code to automate this final step and we inly provide the dataset and associated information (i.e., [codes.json](codes.json) and [repositories.json](repositories.json)).
 
 ## Contents
 
