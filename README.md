@@ -156,6 +156,8 @@ Running scripts (via JupyterLab):
   ```
 
 
-## License
+## Licenses
 
-The data compiled in this repository is licensed under a [Creative Commons Attribution-NonCommercial 4.0 International](https://creativecommons.org/licenses/by-nc/4.0/) (CC BY-NC 4.0) License.
+The software in this repository is licensed under the [MIT License](LICENSE).
+
+The data compiled in this repository is licensed under the [Creative Commons Attribution-NonCommercial 4.0 International](https://creativecommons.org/licenses/by-nc/4.0/) (CC BY-NC 4.0) License.
