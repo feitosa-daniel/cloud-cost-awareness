@@ -120,7 +120,7 @@ Running scripts (via JupyterLab):
     "url": "https://github.com/alphagov/govuk-aws/commit/5fa5da9756f12559b490217dd5b173db48e7f2a9",
     "content": "Resize graphite machine type\n\nUpdate machine type to m5.xlarge. It should be cheaper, we tried to\nresize it before but it didn't work because of disk labels. Trying again\nafter the 'Device' tag was added to the EBS volume.",
     "codes": ["saving","instance"]
-  },
+  }
   ```
 
 ### **`codes.json`**
@@ -147,6 +147,14 @@ Running scripts (via JupyterLab):
     }
   }
   ```
+- Example entry:
+  ```json
+  {
+    "name": "saving",
+    "description": "denotes mentioned changes made to save costs."
+  }
+  ```
+
 
 ## License
 
