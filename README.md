@@ -28,10 +28,9 @@ The supplementary material includes:
 Running scripts (via JupyterLab):
 > 1. Install [Docker Engine](https://docs.docker.com/engine/install/)
 > 2. In the terminal/cmd
->    1. Navigate to this folder
+>    1. Navigate to the folder `data-collection/`
 >    2. Run `docker compose up`
-> 3. Open your browser
-> 4. Navigate to https://localhost:8888
+> 3. In your web browser, navigate to https://localhost:8888
 
 ### **`repositories.json`**
 
