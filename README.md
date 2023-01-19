@@ -2,18 +2,19 @@
 
 This repository contains the supplementary material for the paper entitled:
 
-**Mining Cloud Cost Awareness — Is it possible?**
+**Mining Cost Awareness in the Deployments of Cloud-based Applications**
 
 The supplementary material includes:
-- scripts to support raw data collection and cached versions of data generated during the raw data collection; and
-- the compiled dataset containing evidence of cost awareness in commits of cloud-based software repositories, and associated information.
+- scripts to support raw data collection and cached versions of data generated during the raw data collection;
+- the compiled dataset containing evidence of cost awareness in commits of cloud-based software repositories, and associated information; and
+- scripts to run the topic modeling steps used in the study.
 
 
 **Long-term storage** 
 > This is a temporary repository for double-blind review. If the submission is accepted, we will upload its content to an archival repository that guarantees long-time storage and update the manuscript with the DOI.
 
 **Replication disclaimers:**
-> (1) We note that running the provided scripts from scratch will result in variations in the output files since projects have evolved and some projects may have been deleted or made private.
+> (1) We note that running the provided data collection scripts from scratch will result in variations in the output files since projects have evolved and some projects may have been deleted or made private.
 >
 > (2) The provided scripts aid the collection of the raw data (i.e., candidate commits) to be analyzed for evidence of cost awareness (see [step4-tf-commits.json](data-collection/data/step4-tf-commits.json)). The next step to generate to provided [dataset.json](dataset.json) (i.e., coding of commits and filtering of those with relevant codes) was manual. Therefore, there is no code to automate this final step and we inly provide the dataset and associated information (i.e., [codes.json](codes.json) and [repositories.json](repositories.json)).
 
@@ -36,7 +37,7 @@ Running scripts (via JupyterLab):
 
 - **Content**: Identifier and summary metrics of the repositories that contain evidence of cost awareness in cloud-based software.
 - **Format**: List of entries in JSON.
-- **Size**: 434 entries.
+- **Size**: 488 entries.
 - **Collection period**: May 2022.
 - **Entry fields** ([JSON Schema](https://json-schema.org/)):
   ```json
@@ -85,24 +86,50 @@ Running scripts (via JupyterLab):
 
 ### **`dataset.json`**
 
-- **Content**: Evidence of cost awareness in commits of cloud-based software repositories.
+- **Content**: Evidence of cost awareness in commits and issues of cloud-based software repositories.
 - **Format**: List of entries in JSON.
-- **Size**: 538 entries.
+- **Size**: 746 entries (538 regarding commits and 208 regarding issues).
 - **Collection period**: May 2022.
 - **Entry fields** ([JSON Schema](https://json-schema.org/)):
   ```json
   {
     "$schema": "https://json-schema.org/draft/2020-12/schema",
-    "title": "RepositoryInfo",
+    "title": "DatasetInfo",
     "type": "object",
     "properties": {
+        "type": {
+            "type": "string",
+            "description": "Type of entry ('commit' or 'issue')."
+        },
         "url": {
             "type": "string",
-            "description": "Link to the commit."
+            "description": "Link to the commit or issue."
         },
         "content": {
-            "type": "string",
-            "description": "Commit message."
+            "type": "object",
+            "description": "Commit message or issue content.",
+            "properties": {
+              "message": {
+                  "type": "string",
+                  "description": "Commit message (only for commit entries)."
+              },
+              "title": {
+                  "type": "string",
+                  "description": "Issue title (only for issue entries)."
+              },
+              "body": {
+                  "type": "string",
+                  "description": "Issue body (only for issue entries)."
+              },
+              "comments": {
+                  "type": "array",
+                  "description": "Issue comments (only for issue entries).",
+                  "items": {
+                      "type": "string",
+                      "description": "Issue comment"
+                  }
+              },
+            }
         },
         "codes": {
             "type": "array",
@@ -117,8 +144,11 @@ Running scripts (via JupyterLab):
 - Example entry:
   ```json
   {
+    "type": "commit",
     "url": "https://github.com/alphagov/govuk-aws/commit/5fa5da9756f12559b490217dd5b173db48e7f2a9",
-    "content": "Resize graphite machine type\n\nUpdate machine type to m5.xlarge. It should be cheaper, we tried to\nresize it before but it didn't work because of disk labels. Trying again\nafter the 'Device' tag was added to the EBS volume.",
+    "content": {
+      "message": "Resize graphite machine type\n\nUpdate machine type to m5.xlarge. It should be cheaper, we tried to\nresize it before but it didn't work because of disk labels. Trying again\nafter the 'Device' tag was added to the EBS volume."
+    },
     "codes": ["saving","instance"]
   }
   ```
