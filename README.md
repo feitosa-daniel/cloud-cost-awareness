@@ -16,13 +16,15 @@ The supplementary material includes:
 **Replication disclaimers:**
 > (1) We note that running the provided data collection scripts from scratch will result in variations in the output files since projects have evolved and some projects may have been deleted or made private.
 >
-> (2) The provided scripts aid the collection of the raw data (i.e., candidate commits) to be analyzed for evidence of cost awareness (see [step4-tf-commits.json](data-collection/data/step4-tf-commits.json)). The next step to generate to provided [dataset.json](dataset.json) (i.e., coding of commits and filtering of those with relevant codes) was manual. Therefore, there is no code to automate this final step and we inly provide the dataset and associated information (i.e., [codes.json](codes.json) and [repositories.json](repositories.json)).
+> (2) The provided scripts aid the collection of the raw data (i.e., candidate commits and issues) to be analyzed for evidence of cost awareness (see [step4-tf-commits.json](scripts/data/step4-tf-commits.json) and [step5-tf-issues.json](scripts/data/step5-tf-issues.json)). The next step to generate to provided [dataset.json](dataset.json) (i.e., filtering of relevant commits and issues and coding) was manual. Therefore, there is no code to automate this final steps and we only provide the dataset and associated information (i.e., [codes.json](codes.json) and [repositories.json](repositories.json)).
+>
+> (3) Due to the nature of topic modeling the re-running the associated may yield slightly different set of words in each than those we found.
 
 ## Contents
 
-### **`data-collection/`**
+### **`scripts/`**
 
-- **`data-collection.ipynb`** | Jupyter notebook that makes use of [PyGitHub](https://pypi.org/project/PyGithub/) and [PyDriller](https://pydriller.readthedocs.io/en/latest/commit.html) to automate the raw data retrieval, which is divided into four steps: (1) recover GitHub repositories containing HCL IaC, (2) filter repositories with Terraform files, (3) extract commits with cost-related keywords, and (4) filter commits that modify Terraform files.
+- **`data-collection.ipynb`** | Jupyter notebook that makes use of [PyGitHub](https://pypi.org/project/PyGithub/), [PyDriller](https://pydriller.readthedocs.io/en/latest/commit.html) and [Perceval](https://github.com/chaoss/grimoirelab-perceval) to automate the raw data retrieval.
 - **`data/`** | Folder with the output files generated during the raw data retrieval. The files are explained in `data-collection.ipynb`. Also, you can find a cached version of each file (from the time of the study execution).
 - **`Dockerfile`**, **`docker-compose.yaml`**, **`env.yaml`** | Files to build and start a Docker container with a JupyterLab instance and all necessary dependencies (see `env.yaml`).
 
