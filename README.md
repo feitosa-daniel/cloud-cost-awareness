@@ -24,9 +24,10 @@ The supplementary material includes:
 
 ### **`scripts/`**
 
-- **`data-collection.ipynb`** | Jupyter notebook that makes use of [PyGitHub](https://pypi.org/project/PyGithub/), [PyDriller](https://pydriller.readthedocs.io/en/latest/commit.html) and [Perceval](https://github.com/chaoss/grimoirelab-perceval) to automate the raw data retrieval.
-- **`data/`** | Folder with the output files generated during the raw data retrieval. The files are explained in `data-collection.ipynb`. Also, you can find a cached version of each file (from the time of the study execution).
 - **`Dockerfile`**, **`docker-compose.yaml`**, **`env.yaml`** | Files to build and start a Docker container with a JupyterLab instance and all necessary dependencies (see `env.yaml`).
+- **`data/`** | Folder with the output files generated during the raw data retrieval and final dataset (used as input for `topic-modeling.ipynb`). The raw data files are explained in `data-collection.ipynb`.
+- **`data-collection.ipynb`** | Jupyter notebook that makes use of [PyGitHub](https://pypi.org/project/PyGithub/), [PyDriller](https://pydriller.readthedocs.io/en/latest/commit.html) and [Perceval](https://github.com/chaoss/grimoirelab-perceval) to automate the raw data retrieval.
+- **`topic-modeling.ipynb`** | Jupyter notebook that makes use of [Gensim](https://radimrehurek.com/gensim/), [Stanza](https://github.com/stanfordnlp/stanza) and [pyLDAvis](https://pyldavis.readthedocs.io/en/latest/readme.html) to perform topic modeling and aid the inspection of the various tested models.
 
 Running scripts (via JupyterLab):
 > 1. Install [Docker Engine](https://docs.docker.com/engine/install/)
